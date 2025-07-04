@@ -2,6 +2,9 @@
 
 -Create react-app
 -Configured Tailwind Css
+-Header Build
+-Login Page
+-SignUp Page
 
 # Features to add
 
