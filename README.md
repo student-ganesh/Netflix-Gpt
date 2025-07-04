@@ -2,9 +2,15 @@
 
 -Create react-app
 -Configured Tailwind Css
+-Routing
 -Header Build
 -Login Page
 -SignUp Page
+-useRef
+-Firebase setup
+-Deploy on it
+-Authentication SignUp/In
+-Created Redux Store with userSlice
 
 # Features to add
 
