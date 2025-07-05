@@ -1,11 +1,17 @@
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Utils/firebase";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../Utils/userSlice";
+import { DEF_AVATAR, NET_LOGO } from "../Utils/constant";
 
 const Header = () => {
   const navigate = useNavigate();
+
   const location = useLocation();
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
   const isBrowsePage = location.pathname === "/Browse";
@@ -20,26 +26,49 @@ const Header = () => {
         navigate("/error");
       });
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        if (location.pathname !== "/Browse") {
+          navigate("/Browse");
+        }
+      } else {
+        //When User is signed out
+        dispatch(removeUser());
+
+        if (location.pathname !== "/") {
+          navigate("/");
+        }
+      }
+    });
+    return () => unsubscribe();
+  }, [location.pathname, dispatch, navigate]);
   return (
     <div
       className={`w-full px-8 py-2 flex justify-between items-center z-50 ${
-        isBrowsePage ? "bg-gradient-to-t from-black" : "absolute bg-transparent"
+        isBrowsePage ? "bg-gradient-to-t absolute from-black" : "bg-transparent"
       }`}
     >
       {/* Netflix Logo */}
-      <img
-        className="w-44"
-        src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-07-01/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="logo"
-      />
+      <img className="w-44" src={NET_LOGO} alt="logo" />
 
       {/* User Icon with Dropdown */}
       {user && (
-        <div className="relative group flex-col items-center justify-center">
+        <div className="group flex-col items-center justify-center">
           <img
             className="w-10 h-10 rounded-md  bg-white p-1"
             alt="usericon"
-            src={user?.photoURL}
+            src={user?.photoURL ? user?.photoURL : DEF_AVATAR}
           />
           <button onClick={handleSignOut} className="font-bold mr-5 py-3">
             Sign Out
