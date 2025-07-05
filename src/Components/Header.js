@@ -1,11 +1,14 @@
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Utils/firebase";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useSelector((store) => store.user);
+
+  const isBrowsePage = location.pathname === "/Browse";
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -18,7 +21,11 @@ const Header = () => {
       });
   };
   return (
-    <div className="left-0 relative w-screen px-8 items-center py-2 bg-gradient-to- from-gray-900 z-10 flex justify-between">
+    <div
+      className={`w-full px-8 py-2 flex justify-between items-center z-50 ${
+        isBrowsePage ? "bg-gradient-to-t from-black" : "absolute bg-transparent"
+      }`}
+    >
       {/* Netflix Logo */}
       <img
         className="w-44"
@@ -28,9 +35,9 @@ const Header = () => {
 
       {/* User Icon with Dropdown */}
       {user && (
-        <div className="relative group flex-col items-center  justify-center">
+        <div className="relative group flex-col items-center justify-center">
           <img
-            className="w-10 h-10 rounded-md  bg-white p-1 space-x-4 cursor-pointer"
+            className="w-10 h-10 rounded-md  bg-white p-1"
             alt="usericon"
             src={user?.photoURL}
           />
