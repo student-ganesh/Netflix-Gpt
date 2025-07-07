@@ -17,3 +17,12 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const BG_URL =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/IN-en-20250630-TRIFECTA-perspective_159086b1-425f-435b-bcd5-1ed8039cdef9_small.jpg";
+
+export const SUPPORTED_LANG = [
+  { identifier: "marathi", name: "Marathi" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "en", name: "English" },
+];

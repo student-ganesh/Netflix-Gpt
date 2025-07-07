@@ -23,8 +23,12 @@
 -fetch backg trailer vdo
 -update Store
 -Embeded YT vdo make autoplay/ awesome
-
--
+-Tailwind Classes Used
+-Build Secondary Container
+-Build Movie List
+-Build Feature to this
+-Building Gpt Search Bar
+-Multilangual Features
 
 # Features to add
 
