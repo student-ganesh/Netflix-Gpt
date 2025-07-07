@@ -55,22 +55,25 @@ const Header = () => {
   }, [location.pathname, dispatch, navigate]);
   return (
     <div
-      className={`w-full px-8 py-2 flex justify-between items-center z-50 ${
-        isBrowsePage ? "bg-gradient-to-t absolute from-black" : "bg-transparent"
+      className={`w-full px-8 py-2 flex justify-between items-center z-50 absolute ${
+        isBrowsePage ? "bg-gradient-to-b from-black" : "bg-transparent absolute"
       }`}
     >
       {/* Netflix Logo */}
       <img className="w-44" src={NET_LOGO} alt="logo" />
 
       {/* User Icon with Dropdown */}
-      {user && (
+      {isBrowsePage && user && (
         <div className="group flex-col items-center justify-center">
           <img
             className="w-10 h-10 rounded-md  bg-white p-1"
             alt="usericon"
             src={user?.photoURL ? user?.photoURL : DEF_AVATAR}
           />
-          <button onClick={handleSignOut} className="font-bold mr-5 py-3">
+          <button
+            onClick={handleSignOut}
+            className="text-white font-bold mr-5 py-3"
+          >
             Sign Out
           </button>
         </div>
