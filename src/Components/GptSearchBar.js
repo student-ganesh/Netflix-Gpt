@@ -53,9 +53,9 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex flex-col items-center">
+    <div className="pt-[40%] md:pt-[10%]  flex flex-col items-center">
       <form
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full md:w-1/2 bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -81,13 +81,13 @@ const GptSearchBar = () => {
 
       {movies.length > 0 && (
         <div
-          className=" mt-4 grid grid-cols-5  bg-cover bg-repeat bg-fixed px-2"
+          className=" flex flex-col mt-4 md:grid md:grid-cols-5  bg-cover bg-repeat bg-fixed px-2"
           style={{ backgroundImage: `url(${BG_URL})` }}
         >
           {movies.map((movie) => (
             <div
               key={movie.id}
-              className=" bg-gray-800 px-2 m-1 text-white p-4 rounded shadow"
+              className=" opacity-90 bg-black  px-2 m-1 text-white p-4 rounded shadow"
             >
               <h3 className="font-semibold text-xl">{movie.title}</h3>
               {movie.poster_path && (

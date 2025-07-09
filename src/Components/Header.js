@@ -67,13 +67,13 @@ const Header = () => {
   };
   return (
     <div
-      className={`w-screen px-8 py-2  flex justify-between items-center z-50 absolute ${
+      className={`w-screen px-8 py-2  flex flex-col justify-center md:flex-row md:justify-between items-center z-50 absolute ${
         isBrowsePage ? "bg-gradient-to-b from-black" : "bg-transparent absolute"
       }`}
     >
       {/* Netflix Logo */}
 
-      <img className="w-44" src={NET_LOGO} alt="logo" />
+      <img className="w-44 mx-auto md:mx-0" src={NET_LOGO} alt="logo" />
 
       {/* User Icon with Dropdown */}
 
