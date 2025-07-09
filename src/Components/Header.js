@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { DEF_AVATAR, NET_LOGO, SUPPORTED_LANG } from "../Utils/constant";
 import { toggleGptSearchView } from "../Utils/gptSlice";
-import lang from "../Utils/languageConstant";
 import { changeLanguage } from "../Utils/configSlice";
 
 const Header = () => {
